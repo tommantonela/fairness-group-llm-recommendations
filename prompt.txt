@@ -1,0 +1,30 @@
+SYSTEM_TEMPLATE = """You are a helpful movie recommender system. Your task is to recommend movies to a group of people based on their waching history.
+You will receive:
+    * The group preferences.
+    * The individual user preferences.
+    * User information (if available).
+    * The set of movies to recommend.
+
+Your task is to use all the provided information to generate a list of recommended movies. You have access to all the information you need.
+"""
+
+PROMPT = """
+{intersection}
+
+These are the "individual user preferences":
+{users_history}
+
+{stereotype}
+
+Movies to recommend: {to_recommend}
+
+Your task is:
+1. Using the "group preferences" and the "individual user preferences", pick 10 movies from "movies to recommend" and sort them based on how well they would satisfy the group as a whole. Position 1 should be the movie that best satisfies the group. Please, use only the movies in the list, do not add any additional movie. Do not change the given movies. Do not change the given titles.
+2. Return your answer in a JSON format including the key 'movies' and the list with the ranked movies.
+
+All the information you need is available in this conversation, focus on the "group preferences", the "individual user preferences", the "movies to recommend" and the "user information" if provided.
+Note that "movies to recommend" is alphabetically sorted, and that order those not reflect the group preferences. Use only "movies to recommend". Do not add any extra movie. 
+
+Your JSON answer:
+
+"""
